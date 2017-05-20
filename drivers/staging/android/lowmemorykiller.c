@@ -204,6 +204,7 @@ static struct notifier_block lmk_vmpr_nb = {
 	.notifier_call = lmk_vmpressure_notifier,
 };
 
+#ifdef CONFIG_SEC_OOM_KILLER
 static void dump_tasks_info(void)
 {
 	struct task_struct *p;
@@ -235,6 +236,7 @@ static void dump_tasks_info(void)
 		task_unlock(task);
 	}
 }
+#endif /*CONFIG_SEC_OOM_KILLER*/
 
 static int test_task_flag(struct task_struct *p, int flag)
 {
