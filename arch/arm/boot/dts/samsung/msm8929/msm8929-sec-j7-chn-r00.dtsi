@@ -533,12 +533,12 @@
        qcom,mdss-pref-prim-intf = "dsi";
 };
 
-&dsi_sdc_hd_vid{
+&ss_dsi_panel_S6D7AA0X62_BV050HDM_HD{
 	samsung,panel-extra-power-gpio1 = <&msm_gpio 20 0>;
 };
 
 &mdss_dsi0 {
-	qcom,dsi-pref-prim-pan = <&dsi_sdc_hd_vid>;
+	qcom,dsi-pref-prim-pan = <&ss_dsi_panel_S6D7AA0X62_BV050HDM_HD>;
 	pinctrl-names = "mdss_default", "mdss_sleep";
 	pinctrl-0 = <&mdss_dsi_active &lcd_esd_det_active &bl_active &bl_i2c_active>;
 	pinctrl-1 = <&mdss_dsi_suspend &lcd_esd_det_suspend &bl_suspend &bl_i2c_suspend>;
