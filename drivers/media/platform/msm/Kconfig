@@ -33,16 +33,18 @@ config MSMB_CAMERA_DEBUG
 	---help---
 	  Enable printk() debug for msm camera 2.0
 
-if MSMB_CAMERA
-if CONFIG_SEC_J7_PROJECT
+config MSMB_CAMERA_J7
+        bool "J7 Specific Camera Driver"
+        depends on MSMB_CAMERA
+
+if MSMB_CAMERA_J7
 source "drivers/media/platform/msm/camera_v2_j7lte/Kconfig"
-endif # CONFIG_SEC_J7_PROJECT
-endif # MSMB_CAMERA
+endif # MSMB_CAMERA_J7
 
 if MSMB_CAMERA
-if !(CONFIG_SEC_J7_PROJECT)
+if !(MSMB_CAMERA_J7)
 source "drivers/media/platform/msm/camera_v2/Kconfig"
-endif # !(CONFIG_SEC_J7_PROJECT)
+endif # !(MSMB_CAMERA_J7)
 endif # MSMB_CAMERA
 
 source "drivers/media/platform/msm/vidc/Kconfig"
