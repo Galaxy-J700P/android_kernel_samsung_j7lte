@@ -1504,6 +1504,31 @@ int get_cmd_index(struct samsung_display_driver_data *vdd, int ndx)
 	return vdd->dtsi_data[ndx].candela_map_table[vdd->panel_revision].cmd_idx[index];
 }
 
+void set_auto_brightness_value(struct samsung_display_driver_data *vdd, int ndx)
+{
+	int i, from, end;
+	int size;
+
+	size = vdd->dtsi_data[ndx].hbm_candela_map_table[vdd->panel_revision].lux_tab_size;
+
+	for (i=0; i<size; i++) {
+		from = vdd->dtsi_data[ndx].hbm_candela_map_table[vdd->panel_revision].from[i];
+		end = vdd->dtsi_data[ndx].hbm_candela_map_table[vdd->panel_revision].end[i];
+
+		if (vdd->bl_level >= from && vdd->bl_level <= end)
+			break;
+	}
+
+	if (i == size) {
+		pr_err("can not find auto brightness value !!(for %d / size %d)\n", vdd->bl_level, size);
+		i = size-1;
+	}
+
+	vdd->candela_level = vdd->dtsi_data[ndx].hbm_candela_map_table[vdd->panel_revision].lux_tab[i];
+	vdd->auto_brightness = vdd->dtsi_data[ndx].hbm_candela_map_table[vdd->panel_revision].auto_level[i];
+	return;
+}
+
 int get_candela_value(struct samsung_display_driver_data *vdd, int ndx)
 {
 	int index = vdd->dtsi_data[ndx].candela_map_table[vdd->panel_revision].bkl[vdd->bl_level];
