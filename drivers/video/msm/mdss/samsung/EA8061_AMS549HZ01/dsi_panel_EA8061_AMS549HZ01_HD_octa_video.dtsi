@@ -136,6 +136,7 @@
 
 		qcom,mdss-dsi-stream = <0>;
 		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,mdss-dsi-min-refresh-rate = <50>;
 		qcom,mdss-dsi-dma-trigger = "trigger_sw";
 		qcom,mdss-dsi-panel-framerate = <60>;
 		qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
